@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './Header';
 import Navbar from './Navbar';
 import Dashboard from './Dashbaord';
@@ -6,16 +6,19 @@ import Footer from './Footer';
 
 
 const Home = () => {
+    const [isNavshow, setIsNavshow] = useState(true)
     return (
         <>
-            <Header />
+            <Header setIsNavshow={setIsNavshow} isNavshow={isNavshow} />
             <div className="flex flex-col md:flex-row">
-                <div className="basis-full md:basis-1/5">
-                    <Navbar />
-                </div>
+                {isNavshow ?
+                    <div className=" basis-full md:basis-1/5">
+                        <Navbar isNavshow={isNavshow} />
+                    </div> : ''
+                }
                 <div className="flex-1 p-4">
                     <Dashboard />
-                    <Footer/>
+                    <Footer />
                 </div>
             </div>
         </>
